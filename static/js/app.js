@@ -136,11 +136,15 @@ function renderFeed() {
   DOM.emptyState.style.display = 'none';
   
   // Render cards
-  filtered.forEach(item => {
+  filtered.forEach((item, index) => {
     const isSelected = state.selectedId === item.id;
     const card = document.createElement('div');
     card.className = `note-card ${isSelected ? 'selected' : ''}`;
     card.dataset.id = item.id;
+    card.dataset.type = item.type;
+    card.style.animation = 'fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+    card.style.opacity = '0';
+    card.style.animationDelay = `${index * 0.03}s`;
     
     card.innerHTML = `
       <div class="card-select-indicator">
